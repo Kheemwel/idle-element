@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7at3i785on3a"]
+
+[ext_resource type="Script" uid="uid://dy0bly2bqok2f" path="res://ui/components/dev/dev.gd" id="1_2msuq"]
+[ext_resource type="Script" uid="uid://drnotwppe7tkj" path="res://ui/components/dev/dev_button.gd" id="1_66tr5"]
+
+[node name="Dev" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_2msuq")
+
+[node name="Dev Menu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Dev Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.096204735, 0.09620475, 0.096204735, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Dev Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.030381944
+anchor_top = 0.10493827
+anchor_right = 0.105034724
+anchor_bottom = 0.1404321
+grow_horizontal = 2
+grow_vertical = 2
+text = "Set Energy:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Energy Input" type="LineEdit" parent="Dev Menu"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 63.0
+offset_right = 286.0
+offset_bottom = 94.0
+text = "999"
+placeholder_text = "0"
+virtual_keyboard_type = 2
+
+[node name="Reset Button" type="Button" parent="Dev Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.030381944
+anchor_top = 0.19907407
+anchor_right = 0.11024305
+anchor_bottom = 0.24691358
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reset Data"
+metadata/_edit_use_anchors_ = true
+
+[node name="Dev Button" type="Button" parent="."]
+layout_mode = 1
+offset_right = 86.0
+offset_bottom = 31.0
+text = "Dev Menu"
+script = ExtResource("1_66tr5")
+
+[connection signal="text_submitted" from="Dev Menu/Energy Input" to="." method="_on_energy_input_text_submitted"]
+[connection signal="pressed" from="Dev Menu/Reset Button" to="." method="_on_reset_button_pressed"]
+[connection signal="dev_button_clicked" from="Dev Button" to="." method="_on_dev_button_dev_button_clicked"]

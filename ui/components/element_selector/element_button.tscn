@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://p0ejq2vb6jga"]
+
+[ext_resource type="Script" uid="uid://k5qd7biilj6t" path="res://ui/components/element_selector/element_button.gd" id="1_lwdea"]
+
+[node name="Element Button" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "He"
+script = ExtResource("1_lwdea")

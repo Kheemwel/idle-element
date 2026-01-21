@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://drq3tanh2mao8"]
+
+[ext_resource type="Script" uid="uid://bu0i0tohop6n7" path="res://ui/components/element_selector/element_selector.gd" id="1_xfc5s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pm10"]
+bg_color = Color(0.06879826, 0.06879829, 0.06879823, 1)
+
+[node name="Element Selector" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0pm10")
+script = ExtResource("1_xfc5s")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 10

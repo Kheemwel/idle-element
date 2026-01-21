@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0aek2uavv0qb"]
+
+[ext_resource type="Script" uid="uid://3qetsi2giv15" path="res://features/element_generators/generator.gd" id="1_us7xr"]
+
+[node name="Generator" type="VBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+size_flags_horizontal = 3
+script = ExtResource("1_us7xr")
+
+[node name="Element Detail" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Element Symbol" type="Label" parent="Element Detail"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Element Name" type="Label" parent="Element Detail"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Hydrogen"
+
+[node name="Element Level" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Level" type="Label" parent="Element Level"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Level 1"
+
+[node name="Output" type="Label" parent="Element Level"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Output: 1 / 5s"
+horizontal_alignment = 2
+
+[node name="Production Progress" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+show_percentage = false
+
+[node name="Progress Timer" type="Timer" parent="Production Progress"]
+wait_time = 5.0
+autostart = true
+
+[node name="Upgrade Button" type="Button" parent="."]
+layout_mode = 2
+text = "Upgrade Speed
+5 ⚡"
+
+[connection signal="timeout" from="Production Progress/Progress Timer" to="." method="_on_progress_timer_timeout"]
+[connection signal="pressed" from="Upgrade Button" to="." method="_on_upgrade_button_pressed"]

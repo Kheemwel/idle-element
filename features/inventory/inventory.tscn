@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccpju5kogn28j"]
+
+[ext_resource type="Script" uid="uid://bnejd1rpgtjjh" path="res://features/inventory/inventory.gd" id="1_wemm2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wemm2"]
+bg_color = Color(0.060530342, 0.060530365, 0.060530297, 1)
+
+[node name="Inventory" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wemm2")
+script = ExtResource("1_wemm2")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="Elements Container" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

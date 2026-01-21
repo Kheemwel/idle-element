@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://crgve8c8n0iv5"]
+
+[ext_resource type="Script" uid="uid://y06qypukq7qe" path="res://features/fission/fission_tab.gd" id="1_5ojrn"]
+[ext_resource type="PackedScene" uid="uid://drq3tanh2mao8" path="res://ui/components/element_selector/element_selector.tscn" id="2_wju7n"]
+[ext_resource type="PackedScene" uid="uid://p0ejq2vb6jga" path="res://ui/components/element_selector/element_button.tscn" id="3_wju7n"]
+
+[node name="Fission Tab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ojrn")
+
+[node name="Fission Progress" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -17.0
+offset_right = 328.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fission Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.67800003
+anchor_right = 0.5
+anchor_bottom = 0.67800003
+offset_left = -60.0
+offset_top = -20.344025
+offset_right = 60.0
+offset_bottom = 20.155975
+grow_horizontal = 2
+grow_vertical = 2
+text = "SPLIT
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Fission Element" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.287
+anchor_right = 0.5
+anchor_bottom = 0.287
+offset_left = -46.0
+offset_top = -47.975998
+offset_right = 47.0
+offset_bottom = 48.024002
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+text = "He"
+
+[node name="Element Selector" parent="." instance=ExtResource("2_wju7n")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.41049382
+grow_horizontal = 1
+grow_vertical = 1
+mode = 1
+element_button = ExtResource("3_wju7n")
+
+[connection signal="button_down" from="Fission Button" to="." method="_on_fission_button_button_down"]
+[connection signal="button_up" from="Fission Button" to="." method="_on_fission_button_button_up"]
+[connection signal="toggled" from="Fission Element" to="." method="_on_fission_element_toggled"]
+[connection signal="element_selected" from="Element Selector" to="." method="_on_element_selector_element_selected"]

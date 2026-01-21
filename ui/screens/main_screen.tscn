@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://djip80sugqgf3"]
+
+[ext_resource type="PackedScene" uid="uid://b4gtdlee2ktdw" path="res://features/element_generators/element_generators_tab.tscn" id="1_ejwq5"]
+[ext_resource type="Script" uid="uid://dm3lt1rj85cka" path="res://ui/screens/main_screen.gd" id="1_rnsr4"]
+[ext_resource type="PackedScene" uid="uid://chgopxq2l35kb" path="res://features/fusion/fusion_tab.tscn" id="2_gtkiu"]
+[ext_resource type="PackedScene" uid="uid://ccpju5kogn28j" path="res://features/inventory/inventory.tscn" id="2_jo4t6"]
+[ext_resource type="PackedScene" uid="uid://crgve8c8n0iv5" path="res://features/fission/fission_tab.tscn" id="3_y7br4"]
+[ext_resource type="PackedScene" uid="uid://b7at3i785on3a" path="res://ui/components/dev/dev.tscn" id="6_ycqpv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7br4"]
+content_margin_left = 64.0
+content_margin_right = 12.0
+bg_color = Color(1, 1, 0.34901962, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Main Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rnsr4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06053035, 0.06053035, 0.060530342, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Top Bar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Top Bar"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y7br4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Top Bar/PanelContainer"]
+layout_mode = 2
+
+[node name="Energy Label" type="Label" parent="VBoxContainer/Top Bar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+
+[node name="Energy Icon" type="Label" parent="VBoxContainer/Top Bar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "⚡Energy"
+
+[node name="Inventory Button" type="Button" parent="VBoxContainer/Top Bar"]
+layout_mode = 2
+toggle_mode = true
+text = "⚛️Elements"
+
+[node name="Main Container" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tab Bar" type="HBoxContainer" parent="VBoxContainer/Main Container"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Elements Tab" type="Button" parent="VBoxContainer/Main Container/Tab Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+text = "⚛️ Element Generator"
+
+[node name="Fusion Tab" type="Button" parent="VBoxContainer/Main Container/Tab Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "❇️ Fusion"
+
+[node name="Fission Tab" type="Button" parent="VBoxContainer/Main Container/Tab Bar"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+text = "✳️ Fission"
+
+[node name="Elements Tab" parent="VBoxContainer/Main Container" instance=ExtResource("1_ejwq5")]
+layout_mode = 2
+
+[node name="Fusion Tab" parent="VBoxContainer/Main Container" instance=ExtResource("2_gtkiu")]
+visible = false
+layout_mode = 2
+
+[node name="Fission Tab" parent="VBoxContainer/Main Container" instance=ExtResource("3_y7br4")]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dev" parent="." instance=ExtResource("6_ycqpv")]
+z_index = 9
+layout_mode = 1
+
+[node name="Inventory" parent="." instance=ExtResource("2_jo4t6")]
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -103.0
+offset_top = 34.0
+grow_horizontal = 0
+
+[connection signal="toggled" from="VBoxContainer/Top Bar/Inventory Button" to="." method="_on_inventory_button_toggled"]
+[connection signal="pressed" from="VBoxContainer/Main Container/Tab Bar/Elements Tab" to="." method="_on_elements_tab_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main Container/Tab Bar/Fusion Tab" to="." method="_on_fusion_tab_pressed"]
+[connection signal="pressed" from="VBoxContainer/Main Container/Tab Bar/Fission Tab" to="." method="_on_fission_tab_pressed"]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://chgopxq2l35kb"]
+
+[ext_resource type="Script" uid="uid://drd63alhfgacb" path="res://features/fusion/fusion_tab.gd" id="1_pc4jn"]
+[ext_resource type="PackedScene" uid="uid://drq3tanh2mao8" path="res://ui/components/element_selector/element_selector.tscn" id="2_h1kin"]
+[ext_resource type="PackedScene" uid="uid://p0ejq2vb6jga" path="res://ui/components/element_selector/element_button.tscn" id="3_g71xn"]
+
+[node name="Fusion Tab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_pc4jn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Fuse Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = 79.0
+offset_right = 71.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FUSE
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.32253087
+anchor_right = 1.0
+anchor_bottom = 0.45833334
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Required Element1" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Fusion Progress1" type="ProgressBar" parent="HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+show_percentage = false
+
+[node name="Fusion Element" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+toggle_mode = true
+text = "He"
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Fusion Progress2" type="ProgressBar" parent="HBoxContainer/CenterContainer2"]
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+fill_mode = 1
+show_percentage = false
+
+[node name="Required Element2" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Element Selector" parent="." instance=ExtResource("2_h1kin")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.49691358
+grow_horizontal = 1
+grow_vertical = 1
+element_button = ExtResource("3_g71xn")
+
+[connection signal="button_down" from="Fuse Button" to="." method="_on_fuse_button_button_down"]
+[connection signal="button_up" from="Fuse Button" to="." method="_on_fuse_button_button_up"]
+[connection signal="toggled" from="HBoxContainer/Fusion Element" to="." method="_on_fusion_element_toggled"]
+[connection signal="element_selected" from="Element Selector" to="." method="_on_element_selector_element_selected"]

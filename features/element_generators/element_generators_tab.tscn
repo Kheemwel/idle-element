@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4gtdlee2ktdw"]
+
+[ext_resource type="Script" uid="uid://04mswxeigk6l" path="res://features/element_generators/element_generators_tab.gd" id="1_6a1k4"]
+[ext_resource type="PackedScene" uid="uid://b0aek2uavv0qb" path="res://features/element_generators/generator.tscn" id="2_nhi4k"]
+
+[node name="Element Generators Tab" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_6a1k4")
+generator_container = ExtResource("2_nhi4k")
+metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[connection signal="resized" from="." to="." method="_on_resized"]
